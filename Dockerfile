@@ -11,3 +11,4 @@ COPY . .
 RUN git clone https://huggingface.co/SamLowe/roberta-base-go_emotions
 
 CMD ["python3", "app.py"]
+
