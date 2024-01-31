@@ -14,7 +14,7 @@ pipeline {
                     try {
                         withCredentials([usernamePassword(credentialsId: 'gershonmx-dockerHub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                             // Log in to Docker registry
-                            sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+                            sh "docker login -u${USERNAME} -p${PASSWORD}"
                             // Build Docker image
                             sh "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
                             // Push Docker image to registry
