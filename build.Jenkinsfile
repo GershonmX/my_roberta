@@ -9,17 +9,18 @@ pipeline {
         DOCKER_IMAGE_NAME = "my_roberta"
 
         // Set your Docker image tag (e.g., version number, commit hash, etc.)
-        DOCKER_IMAGE_TAG = "latest"
+        DOCKER_IMAGE_TAG = "BUILD_NUMBER"
     }
 
     stages {
         stage('Build') {
             steps {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
                     // Log in to Docker registry
                     sh "docker login ${DOCKER_REGISTRY}"
 
                     // Build Docker image
-                    sh "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
+                    sh "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:0.0${DOCKER_IMAGE_TAG} ."
 
                     // Tag Docker image
                     sh "docker tag ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
