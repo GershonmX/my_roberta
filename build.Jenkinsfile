@@ -9,7 +9,7 @@ pipeline {
         DOCKER_IMAGE_NAME = "my_roberta"
 
         // Set your Docker image tag (e.g., version number, commit hash, etc.)
-        DOCKER_IMAGE_TAG = ${BUILD_NUMBER}
+        DOCKER_IMAGE_TAG = 0.0.${BUILD_NUMBER}
     }
 
     stages {
