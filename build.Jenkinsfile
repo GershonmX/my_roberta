@@ -29,8 +29,8 @@ pipeline {
             steps {
                 script {
                     // Trigger the deploy job with the specified parameters
-                    build job: 'deploy.Jenkinsfile', wait: false, parameters: [
-                        string(name: 'ROBERTA_IMAGE_URL', value: "${IMAGE_TAG}")
+                    build job: 'RobertaDeploy', wait: false, parameters: [
+                        string(name: 'ROBERTA_IMAGE_URL', value: "${IMAGE_TAG}:${DOCKER_IMAGE_TAG}")
                     ]
                 }
             }
