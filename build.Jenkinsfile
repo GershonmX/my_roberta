@@ -6,7 +6,7 @@ pipeline {
         DOCKER_IMAGE_NAME = "my_roberta"
         DOCKER_IMAGE_TAG = "0.0.${BUILD_NUMBER}"
         IMAGE_NAME = "${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}"
-        IMAGE_TAG = "${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
+        IMAGE_TAG = "${DOCKER_REGISTRY}:${DOCKER_IMAGE_TAG}"
     }
 
     stages {
