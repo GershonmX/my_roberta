@@ -9,6 +9,10 @@ pipeline {
         IMAGE_TAG = "${IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
     }
 
+    options {
+        timestamps()
+    }
+
     stages {
         stage('Build and Push Docker Image') {
             steps {
