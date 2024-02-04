@@ -5,7 +5,8 @@ pipeline {
         DOCKER_REGISTRY = "gershonmx"
         DOCKER_IMAGE_NAME = "my_roberta"
         DOCKER_IMAGE_TAG = "0.0.${BUILD_NUMBER}"
-        value: "${IMAGE_NAME}:${IMAGE_TAG}"
+        IMAGE_NAME = "${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}"
+        IMAGE_TAG = "${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
     }
 
     stages {
@@ -17,33 +18,32 @@ pipeline {
                 }
 
                 // Build Docker image
-                sh "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
+                sh "docker build -t ${IMAGE_TAG} ."
 
                 // Push Docker image to registry
-                sh "docker push ${DOCKER_REGISTRY}/value: "${IMAGE_NAME}:${IMAGE_TAG}":${DOCKER_IMAGE_TAG}"
+                sh "docker push ${IMAGE_TAG}"
             }
         }
-         stage('Trigger Deploy') {
+
+        stage('Trigger Deploy') {
             steps {
                 script {
                     // Trigger the deploy job with the specified parameters
                     build job: 'deploy.Jenkinsfile', wait: false, parameters: [
-                        string(name: 'ROBERTA_IMAGE_URL', value: "${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}")
+                        string(name: 'ROBERTA_IMAGE_URL', value: "${IMAGE_TAG}")
                     ]
                 }
-}
+            }
+        }
     }
 
     post {
         always {
-
-            // Cleanup steps, e.g., logout from Docker registry
-            '''
+            // Cleanup steps, e.g., logout from Docker registry and prune
             sh "docker logout"
-            docker image prune -a --filter "until=24h"
-            docker container prune --filter "until=24h"
-            docker system prune --filter "until=24h"
-            '''
+            sh "docker image prune -a --filter until=24h"
+            sh "docker container prune --filter until=24h"
+            sh "docker system prune --filter until=24h"
         }
 
         success {
