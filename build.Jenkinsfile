@@ -44,10 +44,12 @@ pipeline {
     post {
         always {
             // Cleanup steps, e.g., logout from Docker registry and prune
+            '''
             sh "docker logout"
             sh "docker image prune -a --force --filter until=24h"
             sh "docker container prune --force --filter until=24h"
             sh "docker system prune --force --filter until=24h"
+           '''
         }
 
         success {
