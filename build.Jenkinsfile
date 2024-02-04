@@ -50,6 +50,7 @@ pipeline {
             sh "docker container prune --force --filter until=24h"
             sh "docker system prune --force --filter until=24h"
            '''
+           cleanWs()
         }
 
         success {
