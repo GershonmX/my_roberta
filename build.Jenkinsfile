@@ -65,14 +65,14 @@ pipeline {
 
 
 
-        success {
-            echo "Docker image built and pushed successfully."
-            // Add additional success notifications if needed
+    success {
+        echo "Docker image built and pushed successfully."
+        // Add additional success notifications if needed
         }
 
-        failure {
-            echo "Build failed. Check the logs for details."
-            // Add additional failure notifications if needed
+    failure {
+        echo "Build failed. Check the logs for details."
+        // Add additional failure notifications if needed
         }
     }
 }
