@@ -43,7 +43,6 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'Testing...'
                 snykSecurity(
                     snykInstallation: '/usr/local/bin/snyk',
                     snykTokenId: 'gershon-snyk',
