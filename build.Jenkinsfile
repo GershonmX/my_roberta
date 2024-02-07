@@ -41,16 +41,16 @@ pipeline {
         }
     }
 
-    stage('Test') {
-      steps {
-        echo 'Testing...'
-        snykSecurity(
-          snykInstallation: '/usr/local/bin/snyk',
-          snykTokenId: 'gershon-snyk',
-          // place other parameters here
-        )
-      }
-    }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                snykSecurity(
+                snykInstallation: '/usr/local/bin/snyk',
+                snykTokenId: 'gershon-snyk',
+                // place other parameters here
+                )
+                }
+        }
 
     post {
         always {
