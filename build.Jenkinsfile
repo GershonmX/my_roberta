@@ -49,7 +49,7 @@ pipeline {
                     // place other parameters here
                 )
                 }
-        }
+            }
 
     post {
         always {
