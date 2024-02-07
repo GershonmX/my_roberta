@@ -45,9 +45,9 @@ pipeline {
             steps {
                 echo 'Testing...'
                 snykSecurity(
-                snykInstallation: '/usr/local/bin/snyk',
-                snykTokenId: 'gershon-snyk',
-                // place other parameters here
+                    snykInstallation: '/usr/local/bin/snyk',
+                    snykTokenId: 'gershon-snyk',
+                    // place other parameters here
                 )
                 }
         }
