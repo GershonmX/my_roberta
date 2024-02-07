@@ -45,8 +45,8 @@ pipeline {
       steps {
         echo 'Testing...'
         snykSecurity(
-          snykInstallation: '<Your Snyk Installation Name>',
-          snykTokenId: '<Your Snyk API Token ID>',
+          snykInstallation: '/usr/local/bin/snyk',
+          snykTokenId: 'gershon-snyk',
           // place other parameters here
         )
       }
