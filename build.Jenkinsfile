@@ -39,7 +39,6 @@ pipeline {
                 }
             }
         }
-    }
 
         stage('Test') {
             steps {
@@ -50,6 +49,7 @@ pipeline {
                     // place other parameters here
                 )
             }
+        }
 
     post {
         always {
@@ -60,6 +60,10 @@ pipeline {
             sh "docker system prune --force --filter until=24h"
             cleanWs()
         }
+
+    }
+
+
 
         success {
             echo "Docker image built and pushed successfully."
