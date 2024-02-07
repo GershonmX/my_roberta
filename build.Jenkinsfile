@@ -41,6 +41,17 @@ pipeline {
         }
     }
 
+    stage('Test') {
+      steps {
+        echo 'Testing...'
+        snykSecurity(
+          snykInstallation: '<Your Snyk Installation Name>',
+          snykTokenId: '<Your Snyk API Token ID>',
+          // place other parameters here
+        )
+      }
+    }
+
     post {
         always {
             // Cleanup steps, e.g., logout from Docker registry and prune
