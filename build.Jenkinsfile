@@ -47,6 +47,10 @@ pipeline {
                     snykInstallation: 'snyk-gershonm',
                     snykTokenId: 'gershon-snyk'
                     // place other parameters here
+                    '''
+                    sh snyk auth $snykTokenId
+
+                    '''
                 )
             }
         }
