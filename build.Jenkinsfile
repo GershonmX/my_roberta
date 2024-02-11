@@ -43,7 +43,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Integrate Snyk security scanning using withCredentials
-                withCredentials([string(credentialsId: 'gershon-snyk', variable: 'SNYK_API_TOKEN')]) {
+                withCredentials([string(credentialsId: 'gershon-snyk', variable: 'gershon-snyk')]) {
                     sh "snyk test --all-projects --token=${SNYK_API_TOKEN}"
                 }
         }
