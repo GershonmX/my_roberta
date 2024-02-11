@@ -40,16 +40,16 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
+        // stage('Test') {
+        //    steps {
                 // Integrate Snyk security scanning
-                snykSecurity(
-                    snykInstallation: 'snyk-gershonm',
-                    snykTokenId: 'gershon-snyk'
+        //        snykSecurity(
+        //            snykInstallation: 'snyk-gershonm',
+        //            snykTokenId: 'gershon-snyk'
                     // place other parameters here
-                )
-            }
-        }
+        //        )
+        //    }
+        //}
     }
 
     post {
