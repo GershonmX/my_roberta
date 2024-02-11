@@ -44,7 +44,7 @@ pipeline {
             steps {
                 // Integrate Snyk security scanning
                 snykSecurity(
-                    snykInstallation: 'gershonm-snyk',
+                    snykInstallation: 'snyk-gershonm',
                     snykTokenId: 'gershon-snyk'
                     // place other parameters here
                 )
