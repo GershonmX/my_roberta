@@ -46,9 +46,8 @@ pipeline {
                 // Integrate Snyk security scanning using withCredentials
                 withCredentials([string(credentialsId: 'gershon-snyk-key', variable: 'SNYK_API_TOKEN')]) {
                     sh '''
-                    export SNYK_API_TOKEN
+                    export SNYK_API_TOKEN="${SNYK_API_TOKEN}"
                     snyk auth $SNYK_API_TOKEN
-                    snyk ignore --id='SNYK-PYTHON-TRANSFORMERS-6135747'
                     snyk ignore --id='SNYK-DEBIAN11-ZLIB-6008961'
                     snyk container test $IMAGE_TAG --file=Dockerfile --severity-threshold=critical
                     '''
