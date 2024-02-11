@@ -48,6 +48,7 @@ pipeline {
                     sh '''
                     export SNYK_API_TOKEN
                     snyk auth $SNYK_API_TOKEN
+                    snyk container test $IMAGE_TAG --file=Dockerfile --severity-threshold=critical
                     '''
                 }
             }
