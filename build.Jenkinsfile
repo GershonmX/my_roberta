@@ -42,6 +42,7 @@ pipeline {
 
         stage('Test') {
             steps {
+                echo 'Testing...'
                 // Integrate Snyk security scanning
                 snykSecurity(
                     snykInstallation: 'snyk-gershonm',
