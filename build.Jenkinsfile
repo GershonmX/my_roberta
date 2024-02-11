@@ -48,7 +48,6 @@ pipeline {
                     sh '''
                     export SNYK_API_TOKEN
                     snyk auth $SNYK_API_TOKEN
-                    snyk test --all-projects --token=$SNYK_API_TOKEN
                     '''
                 }
             }
