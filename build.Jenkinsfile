@@ -45,7 +45,11 @@ pipeline {
                 echo 'Testing...'
                 // Integrate Snyk security scanning using withCredentials
                 withCredentials([string(credentialsId: 'gershon-snyk-key', variable: 'SNYK_API_TOKEN')]) {
-                    sh "snyk test --all-projects --token=${SNYK_API_TOKEN}"
+                    sh '''
+                    export SNYK_API_TOKEN
+                    snyk auth $SNYK_API_TOKEN
+                    snyk test --all-projects --token=$SNYK_API_TOKEN
+                    '''
                 }
             }
         }
