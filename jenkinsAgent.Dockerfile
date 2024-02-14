@@ -1,11 +1,10 @@
 FROM ubuntu:latest as installer
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 RUN apt-get update \
-  && apt-get install -y unzip \
-  && unzip awscliv2.zip \
-  && ./aws/install --bin-dir /aws-cli-bin/
+    && apt-get install -y curl unzip \
+    && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip \
+    && ./aws/install --bin-dir /aws-cli-bin/
 
-# this is an example demostrating how to install a tool on a some Docker image, then copy its artifacts to another image
 RUN mkdir /snyk && cd /snyk \
     && curl https://static.snyk.io/cli/v1.666.0/snyk-linux -o snyk \
     && chmod +x ./snyk
